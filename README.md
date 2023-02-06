@@ -1,6 +1,6 @@
 # Typeform to Airtable Spotify Artist Data
 
-### Automatic reception of events from a typeform type webhook &amp; Spotify Artist data extraction
+### Automatic reception of events from a typeform form &amp; Spotify Artist data extraction
 
 ## Quick Start
 
