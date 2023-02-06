@@ -43,7 +43,7 @@ Get the artist popularity from his spotify profile. This function will return an
     '''---------------------------
     Get the artist popularity from his spotify ID.
 
-    ParamÃštres :
+    Parameter :
     -----------
     - spotifyID : Artist's Spotify URL
     ------------------------------'''
@@ -67,7 +67,7 @@ def get_artist_monthlyListeners(spotifyID):
     '''---------------------------
     Get the monthly listeners of an artist from his spotify profile.
 
-    ParamÃštres :
+    Parameter :
     -----------
     - spotifyID : Artist's Spotify URL
     ------------------------------'''
