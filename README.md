@@ -1,14 +1,16 @@
-# Typeform to Airtable Spotify Artist Data
+# 🎵 Typeform to Airtable Spotify Artist Data
 
-### Automatic reception of events from a typeform form &amp; Spotify Artist data extraction
+This project automatically receives events from a Typeform form and extracts Spotify artist data.
 
-## Quick Start
+## 🚀 Quick Start
 
-# Typeform
+### 📝 Typeform
 
-The typeform model used for this example requires 3 types of questions : text, URL and email. The last question is about accepting the terms and conditions. 
+The Typeform model used in this project includes three types of questions: text, URL, and email. The final question is for accepting the terms and conditions.
 
-# Airtable Authentication 
+### 🔑 Airtable Authentication 
+
+You need to set up your Airtable credentials as follows:
 
 ```python
 from pyairtable import Table
@@ -19,7 +21,9 @@ AIRTABLE_BASE_ID = "YOUR_AIRTABLE_BASE_ID"
 table = Table(AIRTABLE_API_KEY, AIRTABLE_BASE_ID, AIRTABLE_NAME)
 ```
 
-# Spotify Authentication
+### 🎵 Spotify Authentication
+
+Configure Spotify credentials with the following setup:
 
 ```python
 import spotipy
@@ -32,11 +36,11 @@ SPOTIPY_REDIRECT_URI  = 'YOUR_SPOTIPY_REDIRECT_URI'
 sp = spotipy.Spotify(auth_manager =SpotifyOAuth(client_id = SPOTIPY_CLIENT_ID, client_secret = SPOTIPY_CLIENT_SECRET, redirect_uri = SPOTIPY_REDIRECT_URI)) 
 ```
 
-### Functions 
+## 🔧 Functions 
 
-# get_artist_popularity
+### 📈 `get_artist_popularity`
 
-Get the artist popularity from his spotify profile. This function will return an integer between 0 and 100. 
+Retrieve the popularity of an artist from their Spotify profile. Returns an integer between 0 and 100.
 
 ```python
 	def get_artist_popularity(spotifyID): 
@@ -55,9 +59,13 @@ Get the artist popularity from his spotify profile. This function will return an
 
 ```
 
-# get_artist_monthlyListeners
+### 📊 `get_artist_monthlyListeners`
 
-Get the monthly listeners of an artist from his spotify profile. This information will be extracted by reading the HTML code source from the artist's spotify profile. This function also returns the value of tier (1 if the artist has more than 1.5e6 monthly listeners, 2 if they are between 1e5 and 1.5e6, 3 otherwise).
+Retrieve the monthly listeners of an artist from their Spotify profile. This function also returns a tier value:
+
+- 1 if the artist has more than 1.5 million monthly listeners.
+- 2 if they have between 100,000 and 1.5 million.
+- 3 otherwise.
 
 
 ```python
@@ -101,26 +109,29 @@ def get_artist_monthlyListeners(spotifyID):
 
 ```
 
-# post
+### 📥 `post`
 
-Get the form data. This function also calls ```get_artist_popularity``` and ```get_artist_monthlyListeners```, to feed the Airtable database with ```table.create(inscription)```. 
+Extract form data and update Airtable with the ```table.create(inscription)``` method. This function also calls ```get_artist_popularity``` and ```get_artist_monthly_listeners``` to populate the Airtable database.
 
+## ☁️ Google Cloud Platform
 
-## Gougle Cloud Platform
+### Console initialization
 
-Console initialization :
+Initialize Google Cloud Platform with:
 
 ```Bash
 gcloud init
 ```
 
-Function deployment :
+### Function deployment :
+
+Deploy the function with:
 
 ```Bash
 gcloud functions deploy webhook_response --runtime python37 --trigger-http 
 ```
 
-After a few minutes, the success message on the console should be as follows :
+After deployment, you should see a success message with the following details:
 
 ```Bash
 availableMemoryMb: 256
@@ -133,4 +144,4 @@ name: projects/typeform-to-airtable/locations/us-central1/functions/webhook_resp
 runtime: python37
 ```
 
-Be aware that you need to copy the right `url` from the `httpsTrigger`. It will be necessary to copy it on the typeform webhook (tab connect > webhook), so that it will connect with the form. 
+Make sure to copy the URL from `httpsTrigger` and configure it in the Typeform webhook settings (tab Connect > Webhook) to integrate it with your form.
